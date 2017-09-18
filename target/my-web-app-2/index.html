@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>my-web-app-2</title>
+    <script src="jquery/jquery-1.11.3.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#goButton").click(makeRequest);
+        });
+        function makeRequest() {
+// TODO: Make authorization request
+            // Define properties
+            var AUTH_ENDPOINT = "https://www.facebook.com/dialog/oauth";
+            var RESPONSE_TYPE = "token";
+            var CLIENT_ID = "2032416086987946";
+            var REDIRECT_URI = "http://localhost:8080/my-web-app-2/callback.html";
+            var SCOPE = "public_profile user_posts";
+// Build authorization request endpoint
+            var requestEndpoint = AUTH_ENDPOINT + "?" +
+                "response_type=" + encodeURIComponent(RESPONSE_TYPE) + "&" +
+                "client_id=" + encodeURIComponent(CLIENT_ID) + "&" +
+                "redirect_uri=" + encodeURIComponent(REDIRECT_URI) + "&" +
+                "scope=" + encodeURIComponent(SCOPE);
+// Send to authorization request endpoint
+            window.location.href = requestEndpoint;
+        }
+    </script>
+</head>
+<body>
+<button id="goButton" type="button">Go!</button>
+<div id="results"></div>
+</body>
+</html>
